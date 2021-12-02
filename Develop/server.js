@@ -19,7 +19,7 @@ app.get("/notes", (req, res) => {
 app.get('/api/notes', (req, res) => {
     //from the front end getNotes function  
     try {
-        //Reads the notes from json file
+        //Reads the notes from JSON file
         notesData = fs.readFileSync("Develop/db/db.json", "utf8");
         console.log("Files have been read");
         //Parses the data so that notesData becomes an array of objects
@@ -35,7 +35,7 @@ app.get('/api/notes', (req, res) => {
 
 app.post('/api/notes', (req, res) => {
     //From the saveNote function from the front end
-    {
+    
         try {
             //Reads the JSON file
             notesData = fs.readFileSync("./Develop/db/db.json", "utf8");
@@ -52,15 +52,16 @@ app.post('/api/notes', (req, res) => {
             fs.writeFile("./Develop/db/db.json", notesData, "utf8", function (err) {
                 if (err) throw err;
             });
-            //Change the data back to an array of objects & sends it back to the browser
+
+            //Changes the data back to an array of objects & sends it back to the browser
             res.json(JSON.parse(notesData));
-            
+
         }
         catch (err) {
             throw err;
             console.error(err);
         }
-    };
+    });
     app.delete('/api/notes/:id', (req, res) => {
         //from the deleteNote function from the front end
         try {
